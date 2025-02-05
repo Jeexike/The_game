@@ -1,5 +1,5 @@
 #include "include/TMainHero.hpp"
-#include "include/TMainHero.hpp"
+#include "include/TView.hpp"
 #include <cmath>
 #include <iostream>
 
@@ -21,8 +21,7 @@ void TMainHero::Draw(sf::RenderWindow *Window){
     Window->draw(HeroSprite);
 }
 
-void TMainHero::Update(float speed) {
-    ///CurrentFrame += 0.005 * speed;
+void TMainHero::Update(float speed, TView& View) {
     int maxFrames = 3;
     CurrentFrame = fmod(CurrentFrame, maxFrames);
     std::cout << CurrentFrame << std::endl;
@@ -54,4 +53,5 @@ void TMainHero::Update(float speed) {
         Y += speed;
     }
     HeroSprite.setPosition(X, Y);
+    View.getherocoordinateview(X, Y);
 }

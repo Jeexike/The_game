@@ -1,6 +1,6 @@
 #include "include/TView.hpp"
 
-TView::TView()     {view.reset(sf::FloatRect(0, 0, 640, 480));}
+TView::TView()     {view.reset(sf::FloatRect(0, 0, 1000, 700));}
 TView::~TView()     {}
 void TView::getherocoordinateview(float x, float y){
     float tempX = x; float tempY = y;

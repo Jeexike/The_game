@@ -3,6 +3,8 @@
 
 #include "main.hpp"
 
+class TView;
+
 class TMainHero{
     protected:
         float X, Y;
@@ -12,7 +14,7 @@ class TMainHero{
         TMainHero(float aX, float aY);
         ~TMainHero();
         void Draw(sf::RenderWindow *Window);
-        void Update(float speed);
+        void Update(float speed, TView& view);
 };
 
 #endif

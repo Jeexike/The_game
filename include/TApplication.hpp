@@ -4,6 +4,8 @@
 #include "main.hpp"
 #include "TMapWidget.hpp"
 #include "TMainHero.hpp"
+#include "TMap.hpp"
+#include "TView.hpp"
 
 namespace Lessons{
     class TApplication{
@@ -11,6 +13,8 @@ namespace Lessons{
             sf::RenderWindow *Window;
             TMapWidget *MapWidget;
             TMainHero *MainHero;
+            TMap *Map;
+            TView *View;
             sf::Clock clock;
         public:
             TApplication();
