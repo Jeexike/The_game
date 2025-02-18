@@ -1,5 +1,6 @@
 #include "include/TMap.hpp"
 #include <iostream>
+#include <ctime>
 
 TMap::TMap() : m_MapTexture()
 {
@@ -7,33 +8,7 @@ TMap::TMap() : m_MapTexture()
         std::cerr << "Ошибка загрузки текстуры!" << std::endl;
     }
     m_MapSprite.setTexture(m_MapTexture);
-    m_TileMap = {
-        "0000000000000000000000000000000000000000",
-        "0                                      0",
-        "0    s                                 0",
-        "0                                      0",
-        "0                                      0",
-        "0                                      0",
-        "0                                      0",
-        "0          s              s            0",
-        "0                                      0",
-        "0                                      0",
-        "0                                      0",
-        "0                  s                   0",
-        "0                                      0",
-        "0                                      0",
-        "0                                      0",
-        "0                                      0",
-        "0                                      0",
-        "0                        s             0",
-        "0                                      0",
-        "0                                      0",
-        "0                                      0",
-        "0                                      0",
-        "0                                      0",
-        "0                                      0",
-        "0000000000000000000000000000000000000000",
-    };
+    GenerateRandomMap();
 }
 
 TMap::~TMap()   {}
@@ -51,3 +26,27 @@ void TMap::DrawMap(sf::RenderWindow *Window)
         Window->draw(m_MapSprite);
     }
 }
+
+void TMap::GenerateRandomMap(){
+    srand(time(nullptr));
+
+    m_TileMap.resize(HEIGHT_MAP, std::vector<char>(WIDTH_MAP, ' '));
+
+    for (int i = 0; i < HEIGHT_MAP; i++){
+        for (int j = 0; j < WIDTH_MAP; j++){
+            if (i == 0 || i == HEIGHT_MAP - 1 || j == 0 || j == WIDTH_MAP - 1){
+                m_TileMap[i][j] = '0';
+            } else if (rand() % 100 < 5) {
+                m_TileMap[i][j] = '0';
+            } else if (rand() % 100 < 3) {
+                m_TileMap[i][j] = 's';
+            } else {
+                m_TileMap[i][j] = ' ';
+            }
+        }
+    }
+
+    m_TileMap[1][1] = ' ';
+}
+
+std::vector<std::vector<char>>& TMap::GetMap() {return m_TileMap;}

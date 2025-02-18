@@ -15,7 +15,7 @@ namespace Lessons{
         if (Window == nullptr){
             Window = new sf::RenderWindow(sf::VideoMode(1920, 1080), "4X TBS Lessons");
             MapWidget = new TMapWidget(0, 0, 1920, 1080);
-            MainHero = new TMainHero(50, 25);
+            MainHero = new TMainHero(100, 50);
             Map = new TMap();
             View = new TView();
         }
@@ -31,8 +31,8 @@ namespace Lessons{
             float time = clock.getElapsedTime().asMicroseconds();
             clock.restart();
             time = time/3200;
-            std::cout << time << "\n";
-            MainHero->Update(time, *View);
+            //std::cout << time << "\n";
+            MainHero->Update(time, *View, Map->GetMap());
             View->viewmap(time);
             View->changeview();
             View->setView(Window);
